@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Teste de Cores</title>
+        <link rel="stylesheet" href="./css/teste.css">
+        <link rel="shortcut icon" href="./img/icon.svg" type="image/x-icon">
+        <script src="js/code.js"></script>
+        <style> /* SE ADICIONAR MAIS LISTAS DE ESTILO, ALTERE A POSIÇÃO EM js/code.js NA FUNÇÃO getCSSBGColorRules() */
+            .red { background-color: rgb(255, 0, 0); } /* UTILIZE APENAS UM SELETOR DE CLASSE */
+            .green { background-color: rgb(0, 255, 0); /* asd */} /* UTILIZE APENAS rgb(red, green, blue) */
+            .blue { background-color: rgb(0, 0, 255); }
+            .cyan { background-color: rgb(0, 255, 255); }
+            .magenta { background-color: rgb(255, 0, 255); }
+            .yellow { background-color: rgb(255, 255, 0); }
+            .spring_green { background-color: rgb(0, 255, 127); }
+            .chartreuse_green { background-color: rgb(127, 255, 0); }
+            .orange { background-color: rgb(255, 127, 0); }
+            .bright_pink { background-color: rgb(255, 0, 127); }
+            .violet { background-color: rgb(127, 0, 255); }
+            .azure { background-color: rgb(0, 127, 255); }
+            .white { background-color: rgb(255, 255, 255); }
+            #a { color: white; }
+            .black { background-color: rgb(0, 0, 0); }
+        </style>
+        <style>
+            .darkText {
+                color: #1f2d3d;
+            }
+            .lightText {
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <div class="bloco red"></div>
+                <div class="bloco green"></div>
+                <div class="bloco blue"></div>
+            </div>
+            <div class="container">
+                <div class="bloco cyan"></div>
+                <div class="bloco magenta"></div>
+                <div class="bloco yellow"></div>
+            </div>
+            <div class="container">
+                <div class="bloco spring_green"></div>
+                <div class="bloco chartreuse_green"></div>
+                <div class="bloco orange"></div>
+                <div class="bloco bright_pink"></div>
+                <div class="bloco violet"></div>
+                <div class="bloco azure"></div>
+            </div>
+            <div class="container">
+                <div class="bloco white"></div>
+                <div class="bloco black"></div>
+            </div>
+        </main>
+    </body>
+    <script>
+        let ColorsStyleSheet = 1;
+        var colorList = getCSSBGColorRules(ColorsStyleSheet);
+        setInterval(() => {colorList.forEach((colorArray) => {
+            colorList = getCSSBGColorRules(1);
+            
+            forEach_Classes(colorArray[0], writeInside, colorArray[1].join(', '))
+
+        });}, 100)
+
+        setInterval(() => {
+            colorList.forEach(colorArray => {
+                forEach_Classes(colorArray[0], (element, colorArr) => {
+                    if (isDark(colorArr[0][1])) {
+                        document.styleSheets[ColorsStyleSheet].cssRules[colorArr[0][2]].style.color = "white"
+                    } else {
+                        document.styleSheets[ColorsStyleSheet].cssRules[colorArr[0][2]].style.color = "#1f2d3d"
+                    }
+                }, colorArray)
+            })
+        }, 100)
+    </script>
+</html>
