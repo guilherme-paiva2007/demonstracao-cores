@@ -9,6 +9,7 @@ body {
     background-color: white;
     display: flex;
     gap: 8px;
+    flex-wrap: wrap;
 }
 
 .bloco {
