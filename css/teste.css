@@ -29,6 +29,24 @@ body {
     border: 1px solid black;
     box-sizing: border-box;
 }
+
+.legenda {
+    width: 120px;
+    margin: auto 0;
+    letter-spacing: -2px;
+}
+
+.slides {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.slides div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
     
 /* .red, .green, .blue, .black {
     color: white;

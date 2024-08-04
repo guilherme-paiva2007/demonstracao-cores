@@ -1,3 +1,5 @@
+let ColorsStyleSheet = 1;
+
 String.prototype.removeText = function removeText(text = "") {
     return this.split(text).join('');
 };
@@ -82,4 +84,18 @@ function getCSSBGColorRules(styleSheet) {
 
 function isDark(colorArr = [0, 0, 0]) { // FUNÇÃO RETIRADA E ADAPTADA DE: https://www.w3schools.com/lib/w3color.js (LINHA 82) | UTILIZADA NA PÁGINA: https://www.w3schools.com/css/css_colors_rgb.asp
     return (((colorArr[0] * 299 + colorArr[1] * 587 + colorArr[2] * 114) / 1000) < 150);
+}
+
+function changeColor(colorClass, colors = [0, 0, 0], styleSheet) {
+    let documentRules = document.styleSheets[styleSheet].cssRules;
+    let colorRules = [];
+    for (let i = 0; i < documentRules.length; i++) {
+        if (documentRules[i].selectorText == '.' + colorClass) {
+            colorRules.push(i);
+        }
+    }
+
+    colorRules.forEach((colorRuleIndex) => {
+        document.styleSheets[styleSheet].cssRules[colorRuleIndex].style.backgroundColor = `rgb(${colors[0]}, ${colors[1]}, ${colors[2]})`;
+    })
 }

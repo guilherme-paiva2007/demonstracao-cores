@@ -23,6 +23,7 @@
             .white { background-color: rgb(255, 255, 255); }
             #a { color: white; }
             .black { background-color: rgb(0, 0, 0); }
+            .colorSelect1 { background-color: rgb(255, 255, 255); }
         </style>
         <style>
             .darkText {
@@ -60,10 +61,36 @@
                 <div class="bloco white"></div>
                 <div class="bloco black"></div>
             </div>
+            <div class="container">
+                <p class="legenda">Color Select 1:</p>
+                <div class="bloco colorSelect1"></div>
+                <div class="slides">
+                    <script>
+                        let colorSelect1 = [0, 0, 0]
+                    </script>
+                    <div>
+                        <label>Red</label>
+                        <input type="range" id="colorSelect1RED" min="0" max="255" oninput="colorSelect1[0] = document.getElementById('colorSelect1RED').value; changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)">
+                    </div>
+                    <div>
+                        <label>Green</label>
+                        <input type="range" id="colorSelect1GREEN" min="0" max="255" oninput="colorSelect1[1] = document.getElementById('colorSelect1GREEN').value; changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)">
+                    </div>
+                    <div>
+                        <label>Blue</label>
+                        <input type="range" id="colorSelect1BLUE" min="0" max="255" oninput="colorSelect1[2] = document.getElementById('colorSelect1BLUE').value; changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)">
+                    </div>
+                    <script>
+                        colorSelect1[0] = document.getElementById('colorSelect1RED').value
+                        colorSelect1[1] = document.getElementById('colorSelect1GREEN').value
+                        colorSelect1[2] = document.getElementById('colorSelect1BLUE').value
+                        changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)
+                    </script>
+                </div>
+            </div>
         </main>
     </body>
     <script>
-        let ColorsStyleSheet = 1;
         var colorList = getCSSBGColorRules(ColorsStyleSheet);
         setInterval(() => {colorList.forEach((colorArray) => {
             colorList = getCSSBGColorRules(1);
