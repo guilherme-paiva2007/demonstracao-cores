@@ -67,18 +67,32 @@
                 <div class="slides">
                     <script>
                         let colorSelect1 = [0, 0, 0]
+                        colorSelect1_Funcs = {
+                            reload: function colorSelect1_Reload() {
+                                changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)
+                            },
+                            get: function colorSelect1_Get() {
+                                colorSelect1[0] = document.getElementById('colorSelect1RED').value
+                                colorSelect1[1] = document.getElementById('colorSelect1GREEN').value
+                                colorSelect1[2] = document.getElementById('colorSelect1BLUE').value
+                            }
+                        }
+                        
                     </script>
                     <div>
                         <label>Red</label>
-                        <input type="range" id="colorSelect1RED" min="0" max="255" oninput="colorSelect1[0] = document.getElementById('colorSelect1RED').value; changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)">
+                        <input type="range" id="colorSelect1RED" min="0" max="255" class="slide redSlide" oninput="colorSelect1_Funcs.get(); colorSelect1_Funcs.reload()">
                     </div>
                     <div>
                         <label>Green</label>
-                        <input type="range" id="colorSelect1GREEN" min="0" max="255" oninput="colorSelect1[1] = document.getElementById('colorSelect1GREEN').value; changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)">
+                        <input type="range" id="colorSelect1GREEN" min="0" max="255" class="slide greenSlide" oninput="colorSelect1_Funcs.get(); colorSelect1_Funcs.reload()">
                     </div>
                     <div>
                         <label>Blue</label>
-                        <input type="range" id="colorSelect1BLUE" min="0" max="255" oninput="colorSelect1[2] = document.getElementById('colorSelect1BLUE').value; changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)">
+                        <input type="range" id="colorSelect1BLUE" min="0" max="255" class="slide blueSlide" oninput="colorSelect1_Funcs.get(); colorSelect1_Funcs.reload()">
+                    </div>
+                    <div>
+                        <p id="colorSelect1DESC"></p>
                     </div>
                     <script>
                         colorSelect1[0] = document.getElementById('colorSelect1RED').value

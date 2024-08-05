@@ -49,7 +49,23 @@ body {
     flex-direction: column;
     text-align: center;
 }
+
+.slide {
+    appearance: none;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    height: 10px;
+    border-radius: 3px;
+}
     
-/* .red, .green, .blue, .black {
-    color: white;
-} */
+.redSlide {
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.greenSlide {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+
+.blueSlide {
+    background-color: rgba(0, 0, 255, 0.5);
+}
