@@ -88,6 +88,12 @@ input[type=range] {
 .slide::-webkit-slider-thumb:hover {
     background-color: rgb(54, 54, 54);
 }
+.slide_desc {
+    font-size: 12px;
+    padding: 2px;
+    border: 1px black solid;
+    box-sizing: border-box;
+}
     
 .redSlide { background-color: rgba(255, 0, 0, 0.5); }
 .redSlide:focus { background-color: rgba(255, 0, 0, 0.7); }

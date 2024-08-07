@@ -300,7 +300,7 @@ class Color {
     }
 }
 
-function update(inputs, targetClass, type) { // Posta as cores na classe-css
+function update(inputs, targetClass, type, descID) { // Posta as cores na classe-css
     // Também atualiza a legenda || CUIDADO COM HEXADECIMAL, UTILIZAR CONSTRUTOR DE COR (codeText)
     // Verificar os inputs, ativando as dinamicas que guardam.
     let colors = [];
@@ -309,9 +309,26 @@ function update(inputs, targetClass, type) { // Posta as cores na classe-css
         colors[index] = input.value
         if (input.dyname !== undefined) input.dyname()
     })
-    colors[3] = colors[3] / 100
+    if (colors[3]) colors[3] = colors[3] / 100
 
     changeColor(targetClass, colors, ColorsStyleSheet, type)
+
+    colors = colors.map(color => {
+        color = parseInt(color)
+        if (isNaN(color)) color = 0
+        return color
+    })
+    document.getElementById(descID).innerHTML = new Color(type, colors).codeText;
+    document.getElementById(descID).style.backgroundColor = new Color(type, colors).codeText;
+    let alphaOK = true;
+    if (colors[3] !== null) {
+        if (colors[3] < 0.5) alphaOK = false;
+    }
+    if (isDark(colors) && alphaOK) {
+        document.getElementById(descID).style.color = "white"
+    } else {
+        document.getElementById(descID).style.color = "#1f2d3d"
+    }
 }
 
 class Slide {
@@ -389,7 +406,7 @@ class Slide {
         if (this.usesAlpha) this.inputs["alpha"] = new input(colorInputsIDs.alpha, inputTypes[3])
 
         this.update = function internUpdate() {
-            update(this.inputs, this.targetClass, this.type)
+            update(this.inputs, this.targetClass, this.type, this.descID)
         }
 
         /**
@@ -426,10 +443,10 @@ class Slide {
 
         this.update();
         
-        document.getElementById(this.inputs[1].id).oninput = () => { update(this.inputs, this.targetClass, this.type) }
-        document.getElementById(this.inputs[2].id).oninput = () => { update(this.inputs, this.targetClass, this.type) }
-        document.getElementById(this.inputs[3].id).oninput = () => { update(this.inputs, this.targetClass, this.type) }
-        if (this.usesAlpha) document.getElementById(this.inputs["alpha"].id).oninput = () => { update(this.inputs, this.targetClass, this.type) }
+        document.getElementById(this.inputs[1].id).oninput = () => { update(this.inputs, this.targetClass, this.type, this.descID) }
+        document.getElementById(this.inputs[2].id).oninput = () => { update(this.inputs, this.targetClass, this.type, this.descID) }
+        document.getElementById(this.inputs[3].id).oninput = () => { update(this.inputs, this.targetClass, this.type, this.descID) }
+        if (this.usesAlpha) document.getElementById(this.inputs["alpha"].id).oninput = () => { update(this.inputs, this.targetClass, this.type, this.descID) }
     }
 }
 

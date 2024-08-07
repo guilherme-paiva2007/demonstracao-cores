@@ -65,51 +65,35 @@
             <div class="container">
                 <div class="legenda">
                     <p><b>RGB</b><br>Color Slide</p>
-                    <p id="colorSelect1DESC">
+                    <p id="colorSelect1DESC" class="slide_desc">
                 </div>
                 <div class="bloco colorSelect1"></div>
                 <div class="slides">
-                    <script>
-                        let colorSelect1 = [0, 0, 0]
-                        colorSelect1_Funcs = {
-                            reload: function colorSelect1_Reload() {
-                                changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)
-                            },
-                            get: function colorSelect1_Get() {
-                                colorSelect1[0] = document.getElementById('colorSelect1RED').value
-                                colorSelect1[1] = document.getElementById('colorSelect1GREEN').value
-                                colorSelect1[2] = document.getElementById('colorSelect1BLUE').value
-                            }
-                        }
-                        
-                    </script>
                     <div>
                         <label>Red</label>
-                        <input type="range" id="colorSelect1RED" min="0" max="255" class="slide redSlide" oninput="colorSelect1_Funcs.get(); colorSelect1_Funcs.reload()">
+                        <input type="range" id="colorSelect1RED" min="" max="" class="slide redSlide" oninput="">
                     </div>
                     <div>
                         <label>Green</label>
-                        <input type="range" id="colorSelect1GREEN" min="0" max="255" class="slide greenSlide" oninput="colorSelect1_Funcs.get(); colorSelect1_Funcs.reload()">
+                        <input type="range" id="colorSelect1GREEN" min="" max="" class="slide greenSlide" oninput="">
                     </div>
                     <div>
                         <label>Blue</label>
-                        <input type="range" id="colorSelect1BLUE" min="0" max="255" class="slide blueSlide" oninput="colorSelect1_Funcs.get(); colorSelect1_Funcs.reload(); dynamicInputs.fill('colorSelect1BLUE', 'rgba(0, 0, 255, 0.5)')">
+                        <input type="range" id="colorSelect1BLUE" min="" max="" class="slide blueSlide" oninput="">
                     </div>
                     <script>
-                        colorSelect1[0] = document.getElementById('colorSelect1RED').value
-                        colorSelect1[1] = document.getElementById('colorSelect1GREEN').value
-                        colorSelect1[2] = document.getElementById('colorSelect1BLUE').value
-                        changeColor('colorSelect1', [colorSelect1[0], colorSelect1[1], colorSelect1[2]], ColorsStyleSheet)
+                        let colorSelect1 = new Slide('rgb', "colorSelect1", {input1: "colorSelect1RED", input2: "colorSelect1GREEN", input3: "colorSelect1BLUE"}, "colorSelect1DESC")
+                        colorSelect1.dyname(dynamicInputs.fill, colorSelect1.inputs[1], "red")
+                        colorSelect1.dyname(dynamicInputs.fill, colorSelect1.inputs[2], "green")
+                        colorSelect1.dyname(dynamicInputs.fill, colorSelect1.inputs[3], "blue")
                     </script>
                 </div>
             </div>
             <div class="container">
                 <div class="legenda">
                     <p><b>HSL</b><br>Color Slide</p>
-                    <p id="colorSelect2DESC"></p>
-                    <script>
-                    </script>
-                    <div>
+                    <p id="colorSelect2DESC" class="slide_desc"></p>
+                    <div hidden>
                         <label>Alpha</label>
                         <input type="range" id="colorSelect2ALPHA" min="" max="" class="slide silverSlide" oninput="">
                     </div>
@@ -129,7 +113,7 @@
                         <input type="range" id="colorSelect2LIGHT" min="" max="" class="slide lightGoldSlide" oninput="">
                     </div>
                     <script>
-                        let colorSelect2 = new Slide("hsla", "colorSelect2", {input1: "colorSelect2HUE", input2: "colorSelect2SATUR", input3: "colorSelect2LIGHT", alpha: "colorSelect2ALPHA"})
+                        let colorSelect2 = new Slide("hsl", "colorSelect2", {input1: "colorSelect2HUE", input2: "colorSelect2SATUR", input3: "colorSelect2LIGHT", alpha: "colorSelect2ALPHA"}, "colorSelect2DESC")
                         colorSelect2.dyname(dynamicInputs.hue, colorSelect2.inputs[1], "", { satID: colorSelect2.inputs[2].id, ligID: colorSelect2.inputs[3].id } )
                         colorSelect2.dyname(dynamicInputs.fading, colorSelect2.inputs[2], "", { color1: [0, 0, 0], color2: [0, 0, 90], colorsType: "hsl" })
                         colorSelect2.dyname(dynamicInputs.fading, colorSelect2.inputs[3], "", { color1: [100, 120, 200], color2: [255, 255, 143], colorsType: "rgb" })
@@ -141,7 +125,7 @@
     <script>
         var colorList = getCSSBGColorRules(ColorsStyleSheet);
         setInterval(() => {colorList.forEach((colorArray) => {
-            colorList = getCSSBGColorRules(1);
+            colorList = getCSSBGColorRules(ColorsStyleSheet);
             
             forEach_Classes(colorArray[0], writeInside, concatColor(colorArray[1]))
 
