@@ -481,7 +481,7 @@ let dynamicInputs = { // Funções que dinamizam os inputs através da funcional
     /**
      * Transiciona entre duas cores de escolha.
      * @param {HTMLClass.ID} slideID 
-     * @param {{color1: Color.codes, color2: Color.codes, colorsType: "rgb" | "hex" | "hsl"}} auxConfig Utilize cores de mesmo formato, sem alpha e em formato de códigos para não causar erros.
+     * @param {{color1: Color.codes, color2: Color.codes, colorsType: "rgb" | "hex" | "hsl" | "rgba" | "hexa" | "hsla"}} auxConfig Utilize cores de mesmo formato, sem alpha e em formato de códigos para não causar erros.
      */
     fading: function fadingSlide(slideID, color, input, auxConfig) { // ATUALIZAR FUTURAMENTE PARA COMPORTAR MAIS CORES E DE DIFERENTES TIPOS
         let avarageColor = [];
@@ -525,14 +525,7 @@ let dynamicInputs = { // Funções que dinamizam os inputs através da funcional
         newBackground = `linear-gradient(90deg, ${color} ${range}%, rgba(127, 127, 127, 0.5) ${range+1}%)`; // Adicionar dinâmica com construtores de input para implementar hover adaptado em HTML (onmouseenter e onmouseleave)
         document.getElementById(slideID).style.background = newBackground
     },
-    /**
-     * Permite a alteração do alpha do input de acordo com quão preenchido está.
-     * @param {String.ID} slideID ID do input
-     * @param {Color.codeText} color 
-     * @param {input} input
-     * @param {{colorType: "rgb" | "hsl" | "hex"}} auxConfig
-     */
-    alpha: function alphaSlide(slideID, color, input, auxConfig) {
+    gradient: function gradientSlide() {
         
     }
 }
