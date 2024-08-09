@@ -25,6 +25,10 @@
             .black { background-color: rgb(0, 0, 0); }
             .colorSelect1 { background-color: rgb(255, 255, 255); }
             .colorSelect2 { background-color: rgb(255, 255, 255); }
+            .colorSelect3 { background-color: rgb(255, 255, 255); }
+            .colorSelect4 { background-color: rgb(255, 255, 255); }
+            .colorSelect5 { background-color: rgb(255, 255, 255); }
+            .colorSelect6 { background-color: rgb(255, 255, 255); }
         </style>
         <style>
             .darkText {
@@ -65,21 +69,21 @@
             <div class="container">
                 <div class="legenda">
                     <p><b>RGB</b><br>Color Slide</p>
-                    <p id="colorSelect1DESC" class="slide_desc">
+                    <p id="colorSelect1DESC" class="slide_desc"></p>
                 </div>
                 <div class="bloco colorSelect1"></div>
                 <div class="slides">
                     <div>
                         <label>Red</label>
-                        <input type="range" id="colorSelect1RED" min="" max="" class="slide redSlide" oninput="">
+                        <input type="range" id="colorSelect1RED" min="" max="" class="slide" oninput="">
                     </div>
                     <div>
                         <label>Green</label>
-                        <input type="range" id="colorSelect1GREEN" min="" max="" class="slide greenSlide" oninput="">
+                        <input type="range" id="colorSelect1GREEN" min="" max="" class="slide" oninput="">
                     </div>
                     <div>
                         <label>Blue</label>
-                        <input type="range" id="colorSelect1BLUE" min="" max="" class="slide blueSlide" oninput="">
+                        <input type="range" id="colorSelect1BLUE" min="" max="" class="slide" oninput="">
                     </div>
                     <script>
                         let colorSelect1 = new Slide('rgb', "colorSelect1", {input1: "colorSelect1RED", input2: "colorSelect1GREEN", input3: "colorSelect1BLUE"}, "colorSelect1DESC")
@@ -88,15 +92,41 @@
                         colorSelect1.dyname(dynamicInputs.fill, colorSelect1.inputs[3], "blue")
                     </script>
                 </div>
+                <div class="legenda">
+                    <p><b>RGBA</b><br>Color Slide</p>
+                    <p id="colorSelect4DESC" class="slide_desc"></p>
+                    <div>
+                        <label>Alpha</label>
+                        <input type="range" id="colorSelect4ALPHA" min="" max="" class="slide" oninput="">
+                    </div>
+                </div>
+                <div class="bloco colorSelect4"></div>
+                <div class="slides">
+                    <div>
+                        <label>Red</label>
+                        <input type="range" id="colorSelect4RED" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Green</label>
+                        <input type="range" id="colorSelect4GREEN" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Blue</label>
+                        <input type="range" id="colorSelect4BLUE" min="" max="" class="slide" oninput="">
+                    </div>
+                    <script>
+                        let colorSelect4 = new Slide('rgba', "colorSelect4", {input1: "colorSelect4RED", input2: "colorSelect4GREEN", input3: "colorSelect4BLUE", alpha: "colorSelect4ALPHA"}, "colorSelect4DESC")
+                        colorSelect4.dyname(dynamicInputs.fill, colorSelect4.inputs[1], 'red')
+                        colorSelect4.dyname(dynamicInputs.fill, colorSelect4.inputs[2], 'green')
+                        colorSelect4.dyname(dynamicInputs.fill, colorSelect4.inputs[3], 'blue')
+                        colorSelect4.dyname(dynamicInputs.fading, colorSelect4.inputs["alpha"], "", { color1: [200, 200, 200, 0.1], color2: [200, 200, 200, 0.9], colorsType: "rgba" })
+                    </script>
+                </div>
             </div>
             <div class="container">
                 <div class="legenda">
                     <p><b>HSL</b><br>Color Slide</p>
                     <p id="colorSelect2DESC" class="slide_desc"></p>
-                    <div hidden>
-                        <label>Alpha</label>
-                        <input type="range" id="colorSelect2ALPHA" min="" max="" class="slide silverSlide" oninput="">
-                    </div>
                 </div>
                 <div class="bloco colorSelect2"></div>
                 <div class="slides">
@@ -106,17 +136,104 @@
                     </div>
                     <div>
                         <label>Saturation</label>
-                        <input type="range" id="colorSelect2SATUR" min="" max="" class="slide silverSlide" oninput="">
+                        <input type="range" id="colorSelect2SATUR" min="" max="" class="slide" oninput="">
                     </div>
                     <div>
                         <label>Lightness</label>
-                        <input type="range" id="colorSelect2LIGHT" min="" max="" class="slide lightGoldSlide" oninput="">
+                        <input type="range" id="colorSelect2LIGHT" min="" max="" class="slide" oninput="">
                     </div>
                     <script>
-                        let colorSelect2 = new Slide("hsl", "colorSelect2", {input1: "colorSelect2HUE", input2: "colorSelect2SATUR", input3: "colorSelect2LIGHT", alpha: "colorSelect2ALPHA"}, "colorSelect2DESC")
+                        let colorSelect2 = new Slide("hsl", "colorSelect2", {input1: "colorSelect2HUE", input2: "colorSelect2SATUR", input3: "colorSelect2LIGHT"}, "colorSelect2DESC")
                         colorSelect2.dyname(dynamicInputs.hue, colorSelect2.inputs[1], "", { satID: colorSelect2.inputs[2].id, ligID: colorSelect2.inputs[3].id } )
                         colorSelect2.dyname(dynamicInputs.fading, colorSelect2.inputs[2], "", { color1: [0, 0, 0], color2: [0, 0, 90], colorsType: "hsl" })
                         colorSelect2.dyname(dynamicInputs.fading, colorSelect2.inputs[3], "", { color1: [100, 120, 200], color2: [255, 255, 143], colorsType: "rgb" })
+                    </script>
+                </div>
+                <div class="legenda">
+                    <p><b>HSLA</b><br>Color Slide</p>
+                    <p id="colorSelect5DESC" class="slide_desc"></p>
+                    <div>
+                        <label>Alpha</label>
+                        <input type="range" id="colorSelect5ALPHA" min="" max="" class="slide" oninput="">
+                    </div>
+                </div>
+                <div class="bloco colorSelect5"></div>
+                <div class="slides">
+                    <div>
+                        <label>Hue</label>
+                        <input type="range" id="colorSelect5HUE" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Saturation</label>
+                        <input type="range" id="colorSelect5SATUR" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Lightness</label>
+                        <input type="range" id="colorSelect5LIGHT" min="" max="" class="slide" oninput="">
+                    </div>
+                    <script>
+                        let colorSelect5 = new Slide('hsla', "colorSelect5", {input1: "colorSelect5HUE", input2: "colorSelect5SATUR", input3: "colorSelect5LIGHT", alpha: "colorSelect5ALPHA"}, "colorSelect5DESC")
+                        colorSelect5.dyname(dynamicInputs.hue, colorSelect5.inputs[1], "", { satID: colorSelect5.inputs[2].id, ligID: colorSelect5.inputs[3].id } )
+                        colorSelect5.dyname(dynamicInputs.fading, colorSelect5.inputs[2], "", { color1: [0, 0, 0], color2: [0, 0, 90], colorsType: "hsl" })
+                        colorSelect5.dyname(dynamicInputs.fading, colorSelect5.inputs[3], "", { color1: [100, 120, 200], color2: [255, 255, 143], colorsType: "rgb" })
+                        colorSelect5.dyname(dynamicInputs.fading, colorSelect5.inputs["alpha"], "", { color1: [0, 0, 80, 0.1], color2: [0, 0, 80, 0.9], colorsType: 'hsla' })
+                    </script>
+                </div>
+            </div>
+            <div class="container">
+                <div class="legenda">
+                    <p><b>HEX</b><br>Color Slide</p>
+                    <p id="colorSelect3DESC" class="slide_desc"></p>
+                </div>
+                <div class="bloco colorSelect3"></div>
+                <div class="slides">
+                    <div>
+                        <label>Red</label>
+                        <input type="range" id="colorSelect3RED" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Green</label>
+                        <input type="range" id="colorSelect3GREEN" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Blue</label>
+                        <input type="range" id="colorSelect3BLUE" min="" max="" class="slide" oninput="">
+                    </div>
+                    <script>
+                        let colorSelect3 = new Slide('hex', "colorSelect3", {input1: "colorSelect3RED", input2: "colorSelect3GREEN", input3: "colorSelect3BLUE"}, "colorSelect3DESC")
+                        colorSelect3.dyname(dynamicInputs.fill, colorSelect3.inputs[1], 'red')
+                        colorSelect3.dyname(dynamicInputs.fill, colorSelect3.inputs[2], 'green')
+                        colorSelect3.dyname(dynamicInputs.fill, colorSelect3.inputs[3], 'blue')
+                    </script>
+                </div>
+                <div class="legenda">
+                    <p><b>HEXA</b><br>Color Slide</p>
+                    <p id="colorSelect6DESC" class="slide_desc"></p>
+                    <div>
+                        <label>Alpha</label>
+                        <input type="range" id="colorSelect6ALPHA" min="" max="" class="slide" oninput="">
+                    </div>
+                </div>
+                <div class="bloco colorSelect6"></div>
+                <div class="slides">
+                    <div>
+                        <label>Red</label>
+                        <input type="range" id="colorSelect6RED" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Green</label>
+                        <input type="range" id="colorSelect6GREEN" min="" max="" class="slide" oninput="">
+                    </div>
+                    <div>
+                        <label>Blue</label>
+                        <input type="range" id="colorSelect6BLUE" min="" max="" class="slide" oninput="">
+                    </div>
+                    <script>
+                        let colorSelect6 = new Slide("hexa", "colorSelect6", {input1: "colorSelect6RED", input2: "colorSelect6GREEN", input3: "colorSelect6BLUE", alpha: "colorSelect6ALPHA"}, "colorSelect6DESC")
+                        colorSelect6.dyname(dynamicInputs.fill, colorSelect6.inputs[1], 'red')
+                        colorSelect6.dyname(dynamicInputs.fill, colorSelect6.inputs[2], 'green')
+                        colorSelect6.dyname(dynamicInputs.fill, colorSelect6.inputs[3], 'blue')
+                        colorSelect6.dyname(dynamicInputs.fading, colorSelect6.inputs["alpha"], "", { color1: [200, 200, 200, 0.1], color2: [200, 200, 200, 0.9], colorsType: "rgba" })
                     </script>
                 </div>
             </div>

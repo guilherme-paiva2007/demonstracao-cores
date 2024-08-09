@@ -1,4 +1,5 @@
 let ColorsStyleSheet = 1;
+let AuxiliarStyleSheet = 2;
 
 String.prototype.removeText = function removeText(text = "") {
     return this.split(text).join('');
@@ -309,22 +310,34 @@ function update(inputs, targetClass, type, descID) { // Posta as cores na classe
         colors[index] = input.value
         if (input.dyname !== undefined) input.dyname()
     })
-    if (colors[3]) colors[3] = colors[3] / 100
-
-    changeColor(targetClass, colors, ColorsStyleSheet, type)
+    if (colors[3] && type !== "hexa") {
+        colors[3] = colors[3] / 100
+    }
 
     colors = colors.map(color => {
-        color = parseInt(color)
+        color = parseFloat(color)
         if (isNaN(color)) color = 0
         return color
     })
+
+    let color = undefined
+    if (type == "hex" || type == "hexa") {
+        color = new Color(type, colors).codeText
+    } else {
+        color = colors
+    }
+
+    changeColor(targetClass, color, ColorsStyleSheet, type)
+    
     document.getElementById(descID).innerHTML = new Color(type, colors).codeText;
     document.getElementById(descID).style.backgroundColor = new Color(type, colors).codeText;
+
+    let newColors = getColorTextToNumbers(document.getElementById(descID).style.backgroundColor);
     let alphaOK = true;
-    if (colors[3] !== null) {
-        if (colors[3] < 0.5) alphaOK = false;
+    if (newColors[3] !== null) {
+        if (newColors[3] < 0.5) alphaOK = false;
     }
-    if (isDark(colors) && alphaOK) {
+    if (isDark(newColors) && alphaOK) {
         document.getElementById(descID).style.color = "white"
     } else {
         document.getElementById(descID).style.color = "#1f2d3d"
@@ -383,6 +396,7 @@ class Slide {
                 if (this.type == "sat") { this.min = "0"; this.max = "100"; this.value = 100; }
                 if (this.type == "lig") { this.min = "0"; this.max = "100"; this.value = 50; }
                 if (this.type == "alpha") { this.min = "0"; this.max = "100"; this.value = 100; }
+                if (this.type == "alpha-hex") { this.min = "0"; this.max = "255"; this.value = 255; }
 
                 document.getElementById(this.id).min = this.min
                 document.getElementById(this.id).max = this.max
@@ -397,7 +411,7 @@ class Slide {
         if (this.type == "hsl") inputTypes = ["hue", "sat", "lig"]
         if (this.type == "hsla") inputTypes = ["hue", "sat", "lig", "alpha"]
         if (this.type == "hex") inputTypes = ["rgb/hex", "rgb/hex", "rgb/hex"]
-        if (this.type == "hexa") inputTypes = ["rgb/hex", "rgb/hex", "rgb/hex", "alpha"]
+        if (this.type == "hexa") inputTypes = ["rgb/hex", "rgb/hex", "rgb/hex", "alpha-hex"]
 
         this.inputs = {};
         this.inputs["1"] = new input(colorInputsIDs.input1, inputTypes[0])
@@ -478,9 +492,19 @@ let dynamicInputs = { // Funções que dinamizam os inputs através da funcional
         let gap_end = slide.end - slide.pos;
         let gap_start = slide.pos;
 
+        if(auxConfig.colorsType == "hex" || auxConfig.colorsType == "hexa") {
+            auxConfig.color1 = auxConfig.color1.map(code => parseInt(code, 16))
+            auxConfig.color2 = auxConfig.color2.map(code => parseInt(code, 16))
+        }
+
         avarageColor[0] = (auxConfig.color1[0] * gap_end + auxConfig.color2[0] * gap_start) / slide.end;
         avarageColor[1] = (auxConfig.color1[1] * gap_end + auxConfig.color2[1] * gap_start) / slide.end;
         avarageColor[2] = (auxConfig.color1[2] * gap_end + auxConfig.color2[2] * gap_start) / slide.end;
+        avarageColor[3] = (auxConfig.color1[3] * gap_end + auxConfig.color2[3] * gap_start) / slide.end;
+
+        if(auxConfig.colorsType == "hex" || auxConfig.colorsType == "hexa") { // HEXA NAO FUNCIONANDO
+            avarageColor = avarageColor.map(code => code.toString(16))
+        }
 
         let newColor = new Color(auxConfig.colorsType, avarageColor).codeText;
         document.getElementById(slideID).style.backgroundColor = newColor;
@@ -508,7 +532,7 @@ let dynamicInputs = { // Funções que dinamizam os inputs através da funcional
      * @param {input} input
      * @param {{colorType: "rgb" | "hsl" | "hex"}} auxConfig
      */
-    alpha: function alpha(slideID, color, input, auxConfig) {
+    alpha: function alphaSlide(slideID, color, input, auxConfig) {
         
     }
 }
