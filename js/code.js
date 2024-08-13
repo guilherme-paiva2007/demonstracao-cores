@@ -190,7 +190,7 @@ class Color {
     /**
      * 
      * @param {"rgb" | "rgba" | "hsl" | "hsla" | "hex" | "hexa"} type 
-     * @param {*} codes 
+     * @param {[number, number, number] | "#ffffff"} codes 
      */
     constructor(type = "rgb", codes) {
         this.type = type
